@@ -8,14 +8,28 @@ shinyUI(fluidPage(
 
   textInput("gene", label=h3("Gene Input"), value="Enter Gene Symbol..."),
   #submitButton("Submit"),
-  plotOutput("GenePlot", height = 350,
-             dblclick = dblclickOpts(
-               id = "plot_dblclick"
-             ))
-  ,
-  fluidRow(
-    column(width = 3,
-           verbatimTextOutput("dblclick_info")
+  ui <- fluidPage(
+    fluidRow(
+      column(width = 12, class = "well",
+             h4("Brush and double-click to zoom"),
+             plotOutput("plot1", height = 300,
+                        click = "plot_click",
+                        dblclick = dblclickOpts(
+                          id = "plot1_dblclick"),
+                        brush = brushOpts(
+                          id = "plot1_brush",
+                          resetOnNew = TRUE
+                        )
+             )
+      )
+    ),
+    fluidRow(
+      column(width = 4,
+             verbatimTextOutput("click_info")
+      ),
+      column(width = 8,
+             verbatimTextOutput("allele_count")
+      )
     )
   )
 ))
