@@ -5,10 +5,10 @@
 # library(myvariant)
 # library(ggplot2)
 # library(DT)
-# setwd("GeneFreq")
-# source("src/GeneFreq.R")
-# load("data/intogenCodingDrivers.RData")
-# load("data/intogenAllCodingDf.RData")
+# setwd("~/avera/repos/GeneFreq")
+# source("GeneFreq.R")
+# load("intogenCodingDrivers.RData")
+# load("intogenAllCodingDf.RData")
 # .collapse <- function(...) {
 #   paste(unlist(list(...)), sep=",", collapse=",")
 # }
