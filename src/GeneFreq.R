@@ -3,13 +3,6 @@ library(splitstackshape)
 library(mygene)
 library(myvariant)
 
-.collapse <- function (...) {
-  paste(unlist(list(...)), sep = ",", collapse = ",")
-}
-
-load(url("https://github.com/adammaikai/GeneFreq/blob/master/data/intogenAllCodingDf.RData?raw=true"))
-load(url("https://github.com/adammaikai/GeneFreq/blob/master/data/intogenCodingDrivers.RData?raw=true"))
-
 ## ExAc amino acid frequencies (normal)
 ExAcGene <- function(Gene) {
   query <- queryVariant(gsub(":", paste0(":", Gene), "dbnsfp.genename:"), fields="dbnsfp.hg19.start,exac.ac.ac", size=10000, return.as="records")
