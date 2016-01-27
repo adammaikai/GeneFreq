@@ -12,5 +12,5 @@ source('GeneFreq.R')
   paste(unlist(list(...)), sep = ",", collapse = ",")
 }
 
-#allCodingDriversUq <- suppressWarnings(source_DropboxData("allCodingDriversUq.tsv", "6u20gfd7yi5ua3d", sep="\t", header=T))
-#allCodingDf <- suppressWarnings(source_DropboxData("allCodingDf.tsv", "szlop3lsb9xgxnx", sep="\t", header=T))
+load("intogenAllCodingDf.RData")
+load("intogenCodingDrivers.RData")
