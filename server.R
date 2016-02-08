@@ -1,4 +1,3 @@
-
 ## ExAc amino acid frequencies (normal)
 shinyServer(function(input, output) {
     
@@ -6,13 +5,13 @@ shinyServer(function(input, output) {
   ranges <- reactiveValues(x = NULL, y = NULL)
   
   exac <- reactive({
-    if(input$gene != "Enter Gene Symbol..."){
+    if(input$gene != "Select Gene Symbol..."){
       ExAcGene(input$gene)
     }
   })
   
   intogen <- reactive({
-    if(input$gene != "Enter Gene Symbol..."){
+    if(input$gene != "Select Gene Symbol..."){
       IntogenGene(input$gene)
     }
   })
@@ -29,27 +28,9 @@ shinyServer(function(input, output) {
     rbind(exac(), intogen())
   })
   
-  output$allele_count <- renderPrint({
-    if(!is.null(df())){
-      cat("ExAc:", nrow(exac()), "missense variants in", input$gene)
-      cat("\n")
-      cat("Intogen:", nrow(intogen()), "missense variants in", input$gene)
-      cat("\n")
-      if(nrow(exac()) > nrow(intogen())){
-        cat("The set of ExAc", input$gene, "variants were randomly subsetted to match the sample size of Intogen", input$gene,"Variants")
-        cat("\n")
-      }
-      else{
-        cat("The set of Intogen", input$gene, "variants were randomly subsetted to match the sample size of Exac", input$gene, "Variants")
-        cat("\n")
-      }
-      cat("Final sample size:", min(nrow(exac()), nrow(intogen())), "ExAc variants and", min(nrow(exac()), nrow(intogen())), "Intogen variants")
-    }
-  })
-  
   output$plot1 <- renderPlot({
-    if(input$gene != "Enter Gene Symbol..."){
-      ggplot(data=df(), aes(x=Position, colour=type)) + geom_bar() + coord_cartesian(xlim = ranges$x, ylim = ranges$y)
+    if(input$gene != "Select Gene Symbol..."){
+      ggplot(data=df(), aes(x=Position, colour=type)) + geom_bar() + coord_cartesian(xlim = ranges$x, ylim = ranges$y) + scale_colour_manual(values = c("green", "red"))
     }
   })
   
@@ -90,6 +71,26 @@ shinyServer(function(input, output) {
       cat("Polyphen2 score:", unique(q$dbnsfp$polyphen2$hdiv$score))
     }
   })
+  output$allele_count <- renderPrint({
+     if(input$gene != "Select Gene Symbol..."){
+       if(!is.null(exac()) & !is.null(intogen())){
+      cat("ExAc:", nrow(exac()), "missense variants in", input$gene)
+        cat("\n")
+        cat("Intogen:", nrow(intogen()), "missense variants in", input$gene)
+        cat("\n")
+       if(nrow(exac()) > nrow(intogen())){
+         cat("The set of ExAc", input$gene, "variants were randomly subsetted to match the sample size of Intogen", input$gene,"Variants.")
+         cat("\n")
+       }
+       else{
+         cat("The set of Intogen", input$gene, "variants were randomly subsetted to match the sample size of Exac", input$gene, "Variants.")
+         cat("\n")
+       }
+       cat("Final sample size:", min(nrow(exac()), nrow(intogen())), "ExAc variants and", min(nrow(exac()), nrow(intogen())), "Intogen variants.")
+       }
+     }
+    else{cat("Sample set info:")}
+   })
   
 })
 

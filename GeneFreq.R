@@ -3,6 +3,10 @@ library(splitstackshape)
 library(mygene)
 library(myvariant)
 
+.collapse <- function (...) {
+  paste(unlist(list(...)), sep = ",", collapse = ",")
+}
+
 ## ExAc amino acid frequencies (normal)
 ExAcGene <- function(Gene) {
   query <- queryVariant(gsub(":", paste0(":", Gene), "dbnsfp.genename:"), fields="dbnsfp.hg19.start,exac.ac.ac", size=10000, return.as="records")
@@ -19,8 +23,7 @@ ExAcGene <- function(Gene) {
 
 IntogenGene <- function(Gene){
   ## Intogen amino acid frequencies (tumor)
-  match <- mygene::query(Gene, scopes="symbol", fields="ensembl.gene", species="human", return.as="records")
-  ensembl.gene <- match$hits[[1]]$ensembl$gene
+  ensembl.gene <- mygene::query(Gene, scopes="symbol", fields="ensembl.gene", species="human", return.as="records")$hits[[1]]$ensembl$gene
   geneCodingDriversUq <- subset(allCodingDriversUq, GENE==ensembl.gene)
   Position=geneCodingDriversUq$LOC
   AlleleCount=unlist(lapply(geneCodingDriversUq$LOC, function(x) length(unique(allCodingDf[which(allCodingDf$LOC %in% x),]$SAMPLE))))

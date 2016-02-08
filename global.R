@@ -12,5 +12,6 @@ source('GeneFreq.R')
   paste(unlist(list(...)), sep = ",", collapse = ",")
 }
 
-load("intogenAllCodingDf.RData")
-load("intogenCodingDrivers.RData")
+load("intogenCoding.RData")
+load("tcgaGeneSymbols.RData")
+allCodingDriversUq <- allCodingDf[match(unique(allCodingDf$LOC), allCodingDf$LOC), -1]
