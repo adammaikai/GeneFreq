@@ -1,3 +1,0 @@
-*RData filter=lfs diff=lfs merge=lfs -text
-intogenCoding.RData filter=lfs diff=lfs merge=lfs -text
-tcgaGeneSymbols.RData filter=lfs diff=lfs merge=lfs -text
