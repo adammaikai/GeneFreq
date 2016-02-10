@@ -1,8 +1,0 @@
-library(shiny)
-library(data.table)
-library(splitstackshape)
-library(mygene)
-library(myvariant)
-library(ggplot2)
-library(plyr)
-source('GeneFreq.R')
