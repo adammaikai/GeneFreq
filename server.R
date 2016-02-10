@@ -30,7 +30,7 @@ shinyServer(function(input, output) {
   
   output$plot1 <- renderPlot({
     if(input$gene != "Select Gene Symbol..."){
-      ggplot(data=df(), aes(x=Position, colour=type)) + geom_bar() + coord_cartesian(xlim = ranges$x, ylim = ranges$y) + scale_colour_manual(values = c("green", "red"))
+      ggplot(data=df(), aes(x=Position, colour=type)) + ggtitle(input$gene) + geom_bar() + coord_cartesian(xlim = ranges$x, ylim = ranges$y) + scale_colour_manual(values = c("green", "red"))
     }
   })
   

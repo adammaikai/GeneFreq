@@ -5,9 +5,7 @@ shinyUI(fluidPage(
 
   # Application title
   titlePanel("Gene Freq!"),
-  h5("This a visual tool for comparing the distribution of nonsynonymous variants across a gene in the ExAc population versus the Intogen dataset. Input a gene symbol below. Once the plot is made, you can select a region and  double click to zoom. Repeat this action to achieve base pair resolution. You can then click a position on the plot to learn about the variant."),
-  #textInput("gene", label=h3("Gene Input"), value="Enter Gene Symbol..."),
-  #submitButton("Submit"),
+  h5("This a visual tool for comparing the distribution of nonsynonymous variants across a gene in the ExAc dataset versus the Intogen dataset. Select a gene symbol below (autocomplete is provided). Variant allele counts from the ExAc dataset as well as the Intogen dataset will then be plotted. You can select a region and double click to zoom. Repeat this action to achieve base pair resolution. You can then click a position on the plot to learn about the variant."),
   selectInput("gene", label = h3("Select Gene"), 
               choices = c("Select Gene Symbol...", symbols), 
               selected = "Select Gene Symbol..."),

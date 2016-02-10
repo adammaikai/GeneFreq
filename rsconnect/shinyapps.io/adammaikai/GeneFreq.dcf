@@ -1,8 +1,8 @@
 name: GeneFreq
 account: adammaikai
 server: shinyapps.io
-bundleId: 368883
+bundleId: 369675
 url: https://adammaikai.shinyapps.io/GeneFreq/
-when: 1454971723.87453
+when: 1455062525.18092
 asMultiple: FALSE
 asStatic: FALSE
